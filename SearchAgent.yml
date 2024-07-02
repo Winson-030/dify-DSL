@@ -1,0 +1,646 @@
+app:
+  description: ''
+  icon: "\U0001F310"
+  icon_background: '#E4FBCC'
+  mode: advanced-chat
+  name: "\u641C\u7D22\u5927\u5E083"
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: true
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1719593592357-source-1719759357501-target
+      selected: false
+      source: '1719593592357'
+      sourceHandle: source
+      target: '1719759357501'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1719759357501-source-1719838886987-target
+      source: '1719759357501'
+      sourceHandle: source
+      target: '1719838886987'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1719838886987-source-1719840515773-target
+      source: '1719838886987'
+      sourceHandle: source
+      target: '1719840515773'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1719878483248-source-1719840940932-target
+      source: '1719878483248'
+      sourceHandle: source
+      target: '1719840940932'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1719840940932-source-1719932888279-target
+      source: '1719840940932'
+      sourceHandle: source
+      target: '1719932888279'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1719932888279-source-answer-target
+      source: '1719932888279'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1719878483248'
+        sourceType: tool
+        targetType: llm
+      id: 1719934883544-source-1719932203379-target
+      source: '1719934883544'
+      sourceHandle: source
+      target: '1719932203379'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1719878483248'
+        sourceType: http-request
+        targetType: if-else
+      id: 1719935024281-source-1719935026336-target
+      source: '1719935024281'
+      sourceHandle: source
+      target: '1719935026336'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1719878483248'
+        sourceType: if-else
+        targetType: tool
+      id: 1719935026336-true-1719934883544-target
+      source: '1719935026336'
+      sourceHandle: 'true'
+      target: '1719934883544'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: code
+      id: 1719840515773-source-1719933634159-target
+      source: '1719840515773'
+      sourceHandle: source
+      target: '1719933634159'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1719933634159-source-1719878483248-target
+      source: '1719933634159'
+      sourceHandle: source
+      target: '1719878483248'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1719593592357'
+      position:
+        x: 30
+        y: 358
+      positionAbsolute:
+        x: 30
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1719932888279.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 107
+      id: answer
+      position:
+        x: 3696
+        y: 358
+      positionAbsolute:
+        x: 3696
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        model:
+          completion_params:
+            frequency_penalty: 0.5
+            presence_penalty: 0.5
+            temperature: 0.2
+            top_p: 0.75
+          mode: chat
+          name: gpt-3.5-turbo-16k
+          provider: openai
+        prompt_template:
+        - id: 455a5f0d-bbba-479a-b3c2-1eefa938894a
+          role: system
+          text: "You are a helpful assistant that helps the user to ask related questions,\
+            \ based on question and the related contexts. \n\nPlease make sure that\
+            \ specifics, like events, names, locations, are included in follow up\
+            \ questions so they can be asked standalone. For example, if the original\
+            \ question asks about \"the Manhattan project\", in the follow up question,\
+            \ do not just say \"the project\", but use the full name \"the Manhattan\
+            \ project\". Your related questions must be in the same language as the\
+            \ original question."
+        - id: 6ba785ec-0bba-4a19-8a6d-63dbeacce7d2
+          role: user
+          text: "Here is the question: {{#sys.query#}}\n\nUnderstand the question\
+            \ first, then identify worthwhile topics that can be follow-ups, provide\
+            \ 3 questions, each question no longer than 20 words. \nDo NOT repeat\
+            \ the original question. the output language MUST same  as \u2018 {{#context#}}\
+            \ \u2018 and do NOT return any translation. "
+        selected: false
+        title: LLM 1
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1719759357501'
+      position:
+        x: 334
+        y: 358
+      positionAbsolute:
+        x: 334
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    questions = arg1.split('\\n')\n\
+          \    return {\n        \"result\": questions,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: Code
+        type: code
+        variables:
+        - value_selector:
+          - '1719759357501'
+          - text
+          variable: arg1
+      height: 54
+      id: '1719838886987'
+      position:
+        x: 638
+        y: 358
+      positionAbsolute:
+        x: 638
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 247
+        iterator_selector:
+        - '1719838886987'
+        - result
+        output_selector:
+        - '1719840630750'
+        - text
+        output_type: array[string]
+        selected: false
+        startNodeType: tool
+        start_node_id: '1719840630750'
+        title: Iteration
+        type: iteration
+        width: 377
+      height: 247
+      id: '1719840515773'
+      position:
+        x: 942
+        y: 358
+      positionAbsolute:
+        x: 942
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 377
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1719840515773'
+        provider_id: duckduckgo
+        provider_name: duckduckgo
+        provider_type: builtin
+        selected: false
+        title: DuckDuckGo Search1
+        tool_configurations:
+          max_results: 1
+          require_summary: 0
+          result_type: link
+        tool_label: DuckDuckGo Search
+        tool_name: ddgo_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1719840515773.item#}}'
+        type: tool
+      extent: parent
+      height: 142
+      id: '1719840630750'
+      parentId: '1719840515773'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 1059
+        y: 443
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ arg1 }}'
+        title: Template
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1719878483248'
+          - output
+          variable: arg1
+      height: 54
+      id: '1719840940932'
+      position:
+        x: 3088
+        y: 358
+      positionAbsolute:
+        x: 3088
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 316
+        iterator_selector:
+        - '1719933634159'
+        - result
+        output_selector:
+        - '1719932203379'
+        - text
+        output_type: array[string]
+        selected: false
+        startNodeType: http-request
+        start_node_id: '1719935024281'
+        title: Iteration 2
+        type: iteration
+        width: 1345
+      height: 316
+      id: '1719878483248'
+      position:
+        x: 1683
+        y: 358
+      positionAbsolute:
+        x: 1683
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1345
+      zIndex: 1
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719878483248'
+        model:
+          completion_params:
+            frequency_penalty: 0.5
+            presence_penalty: 0.5
+            temperature: 0.2
+            top_p: 0.75
+          mode: chat
+          name: gpt-3.5-turbo-16k
+          provider: openai
+        prompt_template:
+        - id: b3c46791-324a-4472-ae74-72b8d01bb221
+          role: system
+          text: "<Task>\nDo a general overview style summary to the following text,\
+            \  your answer must be correct and accurate and limit in 4096 tokens.\
+            \ Do not give any information that is not related to the text, and do\
+            \ not repeat. Use the same language as text to be summarized. \n<Text\
+            \ to be summarized>\n{{#1719934883544.text#}}\n<Summary>"
+        selected: false
+        title: LLM 3
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      extent: parent
+      height: 98
+      id: '1719932203379'
+      parentId: '1719878483248'
+      position:
+        x: 1085
+        y: 95.4769498080471
+      positionAbsolute:
+        x: 2768
+        y: 453.4769498080471
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}{{#1719759357501.text#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            frequency_penalty: 0.5
+            presence_penalty: 0.5
+            temperature: 0.2
+            top_p: 0.75
+          mode: chat
+          name: gpt-3.5-turbo-16k
+          provider: openai
+        prompt_template:
+        - id: fd1a7c6d-67ae-4124-ad91-65fe8868c4ab
+          role: system
+          text: "You are a large language AI assistant built by winson. You are given\
+            \ a user question, and please write clean, concise and accurate answer\
+            \ to the question. You will be given a set of related contexts to the\
+            \ question. Your answer must be correct, accurate and written by an expert\
+            \ using an unbiased and professional tone.\nAnd here are the set of retrieved\
+            \ contexts:  {{#1719759357501.text#}}\n\n\n\nAnd here are the answer of\
+            \ the query from search engine: {{#1719840940932.output#}}\n\n\n<Task>\n\
+            \nPlease learn from the contexts and the answer from the search engine,\
+            \ provide the . The final answer must be in paragraphs. Do not give any\
+            \ information that is not related to the contexts, and do not repeat.\
+            \ Say \"information is missing on\" followed by the related topic. Other\
+            \ than code and specific names and citations.\nFinally, remember your\
+            \ response MUST be written in Chinese and in Markdown. \n<Final Answer>\n\
+            \n"
+        selected: false
+        title: LLM 4
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1719932888279'
+      position:
+        x: 3392
+        y: 358
+      positionAbsolute:
+        x: 3392
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(arg2: str) -> dict:\n    import re\n    links = []\n    for\
+          \ text in arg2:\n        link_list = re.findall(r'\\(https?://[^\\s\\)]+\\\
+          )', text)\n        links.extend([link.strip('()') for link in link_list])\n\
+          \    return {\n        \"result\": links,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: Code 2
+        type: code
+        variables:
+        - value_selector:
+          - '1719840515773'
+          - output
+          variable: arg2
+      height: 54
+      id: '1719933634159'
+      position:
+        x: 1379
+        y: 358
+      positionAbsolute:
+        x: 1379
+        y: 358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719878483248'
+        provider_id: webscraper
+        provider_name: webscraper
+        provider_type: builtin
+        selected: false
+        title: Web Scraper
+        tool_configurations:
+          generate_summary: 1
+          user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+            (KHTML, like Gecko) Chrome/100.0.1000.0 Safari/537.36
+        tool_label: Web Scraper
+        tool_name: webscraper
+        tool_parameters:
+          url:
+            type: mixed
+            value: '{{#1719878483248.item#}}'
+        type: tool
+      extent: parent
+      height: 116
+      id: '1719934883544'
+      parentId: '1719878483248'
+      position:
+        x: 751.2959459148569
+        y: 85.28571428571433
+      positionAbsolute:
+        x: 2434.295945914857
+        y: 443.28571428571433
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: none
+        desc: ''
+        headers: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1719878483248'
+        method: get
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request
+        type: http-request
+        url: '{{#1719878483248.item#}}'
+        variables: []
+      extent: parent
+      height: 93
+      id: '1719935024281'
+      parentId: '1719878483248'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 1800
+        y: 443
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        conditions:
+        - comparison_operator: '='
+          id: '1719935030678'
+          value: '200'
+          variable_selector:
+          - '1719935024281'
+          - status_code
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719878483248'
+        logical_operator: and
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      extent: parent
+      height: 126
+      id: '1719935026336'
+      parentId: '1719878483248'
+      position:
+        x: 421
+        y: 85
+      positionAbsolute:
+        x: 2104
+        y: 443
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    viewport:
+      x: -232.5999999999999
+      y: 296.45000000000005
+      zoom: 0.7
