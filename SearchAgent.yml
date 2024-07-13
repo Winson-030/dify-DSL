@@ -22,7 +22,7 @@ workflow:
       enabled: false
     suggested_questions: []
     suggested_questions_after_answer:
-      enabled: true
+      enabled: false
     text_to_speech:
       enabled: false
       language: ''
@@ -86,29 +86,6 @@ workflow:
       type: custom
       zIndex: 0
     - data:
-        isInIteration: false
-        sourceType: llm
-        targetType: answer
-      id: 1719932888279-source-answer-target
-      source: '1719932888279'
-      sourceHandle: source
-      target: answer
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: true
-        iteration_id: '1719878483248'
-        sourceType: tool
-        targetType: llm
-      id: 1719934883544-source-1719932203379-target
-      source: '1719934883544'
-      sourceHandle: source
-      target: '1719932203379'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
         isInIteration: true
         iteration_id: '1719878483248'
         sourceType: http-request
@@ -117,18 +94,6 @@ workflow:
       source: '1719935024281'
       sourceHandle: source
       target: '1719935026336'
-      targetHandle: target
-      type: custom
-      zIndex: 1002
-    - data:
-        isInIteration: true
-        iteration_id: '1719878483248'
-        sourceType: if-else
-        targetType: tool
-      id: 1719935026336-true-1719934883544-target
-      source: '1719935026336'
-      sourceHandle: 'true'
-      target: '1719934883544'
       targetHandle: target
       type: custom
       zIndex: 1002
@@ -154,6 +119,41 @@ workflow:
       targetHandle: target
       type: custom
       zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1719878483248'
+        sourceType: if-else
+        targetType: tool
+      id: 1719935026336-true-1720364034385-target
+      source: '1719935026336'
+      sourceHandle: 'true'
+      target: '1720364034385'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1719932888279-source-answer-target
+      source: '1719932888279'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1719878483248'
+        sourceType: tool
+        targetType: template-transform
+      id: 1720364034385-source-1720570101918-target
+      source: '1720364034385'
+      sourceHandle: source
+      target: '1720570101918'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
     nodes:
     - data:
         desc: ''
@@ -165,10 +165,10 @@ workflow:
       id: '1719593592357'
       position:
         x: 30
-        y: 358
+        y: 388.5
       positionAbsolute:
         x: 30
-        y: 358
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -184,11 +184,11 @@ workflow:
       height: 107
       id: answer
       position:
-        x: 3696
-        y: 358
+        x: 3619
+        y: 388.5
       positionAbsolute:
-        x: 3696
-        y: 358
+        x: 3619
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -238,10 +238,10 @@ workflow:
       id: '1719759357501'
       position:
         x: 334
-        y: 358
+        y: 388.5
       positionAbsolute:
         x: 334
-        y: 358
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -268,10 +268,10 @@ workflow:
       id: '1719838886987'
       position:
         x: 638
-        y: 358
+        y: 388.5
       positionAbsolute:
         x: 638
-        y: 358
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -284,12 +284,12 @@ workflow:
         - '1719838886987'
         - result
         output_selector:
-        - '1719840630750'
+        - '1720362263119'
         - text
         output_type: array[string]
         selected: false
         startNodeType: tool
-        start_node_id: '1719840630750'
+        start_node_id: '1720362263119'
         title: Iteration
         type: iteration
         width: 377
@@ -297,10 +297,10 @@ workflow:
       id: '1719840515773'
       position:
         x: 942
-        y: 358
+        y: 388.5
       positionAbsolute:
         x: 942
-        y: 358
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -309,45 +309,10 @@ workflow:
       zIndex: 1
     - data:
         desc: ''
-        isInIteration: true
-        isIterationStart: true
-        iteration_id: '1719840515773'
-        provider_id: duckduckgo
-        provider_name: duckduckgo
-        provider_type: builtin
         selected: false
-        title: DuckDuckGo Search1
-        tool_configurations:
-          max_results: 1
-          require_summary: 0
-          result_type: link
-        tool_label: DuckDuckGo Search
-        tool_name: ddgo_search
-        tool_parameters:
-          query:
-            type: mixed
-            value: '{{#1719840515773.item#}}'
-        type: tool
-      extent: parent
-      height: 142
-      id: '1719840630750'
-      parentId: '1719840515773'
-      position:
-        x: 117
-        y: 85
-      positionAbsolute:
-        x: 1059
-        y: 443
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-      zIndex: 1001
-    - data:
-        desc: ''
-        selected: false
-        template: '{{ arg1 }}'
+        template: '{{ arg1 }}
+
+          '
         title: Template
         type: template-transform
         variables:
@@ -358,11 +323,11 @@ workflow:
       height: 54
       id: '1719840940932'
       position:
-        x: 3088
-        y: 358
+        x: 3011
+        y: 388.5
       positionAbsolute:
-        x: 3088
-        y: 358
+        x: 3011
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -370,80 +335,34 @@ workflow:
       width: 244
     - data:
         desc: ''
-        height: 316
+        height: 377
         iterator_selector:
         - '1719933634159'
         - result
         output_selector:
-        - '1719932203379'
-        - text
+        - '1720570101918'
+        - output
         output_type: array[string]
         selected: false
         startNodeType: http-request
         start_node_id: '1719935024281'
         title: Iteration 2
         type: iteration
-        width: 1345
-      height: 316
+        width: 1267.5714285714284
+      height: 377
       id: '1719878483248'
       position:
         x: 1683
-        y: 358
+        y: 388.5
       positionAbsolute:
         x: 1683
-        y: 358
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 1345
+      width: 1268
       zIndex: 1
-    - data:
-        context:
-          enabled: false
-          variable_selector: []
-        desc: ''
-        isInIteration: true
-        iteration_id: '1719878483248'
-        model:
-          completion_params:
-            frequency_penalty: 0.5
-            presence_penalty: 0.5
-            temperature: 0.2
-            top_p: 0.75
-          mode: chat
-          name: gpt-3.5-turbo-16k
-          provider: openai
-        prompt_template:
-        - id: b3c46791-324a-4472-ae74-72b8d01bb221
-          role: system
-          text: "<Task>\nDo a general overview style summary to the following text,\
-            \  your answer must be correct and accurate and limit in 4096 tokens.\
-            \ Do not give any information that is not related to the text, and do\
-            \ not repeat. Use the same language as text to be summarized. \n<Text\
-            \ to be summarized>\n{{#1719934883544.text#}}\n<Summary>"
-        selected: false
-        title: LLM 3
-        type: llm
-        variables: []
-        vision:
-          enabled: false
-      extent: parent
-      height: 98
-      id: '1719932203379'
-      parentId: '1719878483248'
-      position:
-        x: 1085
-        y: 95.4769498080471
-      positionAbsolute:
-        x: 2768
-        y: 453.4769498080471
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-      zIndex: 1002
     - data:
         context:
           enabled: false
@@ -469,20 +388,16 @@ workflow:
         prompt_template:
         - id: fd1a7c6d-67ae-4124-ad91-65fe8868c4ab
           role: system
-          text: "You are a large language AI assistant built by winson. You are given\
-            \ a user question, and please write clean, concise and accurate answer\
-            \ to the question. You will be given a set of related contexts to the\
-            \ question. Your answer must be correct, accurate and written by an expert\
-            \ using an unbiased and professional tone.\nAnd here are the set of retrieved\
-            \ contexts:  {{#1719759357501.text#}}\n\n\n\nAnd here are the answer of\
-            \ the query from search engine: {{#1719840940932.output#}}\n\n\n<Task>\n\
-            \nPlease learn from the contexts and the answer from the search engine,\
-            \ provide the . The final answer must be in paragraphs. Do not give any\
-            \ information that is not related to the contexts, and do not repeat.\
-            \ Say \"information is missing on\" followed by the related topic. Other\
-            \ than code and specific names and citations.\nFinally, remember your\
-            \ response MUST be written in Chinese and in Markdown. \n<Final Answer>\n\
-            \n"
+          text: 'You are a large language AI assistant built by winson. Your answer
+            must be correct, accurate and written by an expert using an unbiased and
+            professional tone.
+
+            '
+        - id: 989185b9-19fb-486e-b430-b9c379b532b9
+          role: user
+          text: "<Task>\nDo a general overview style summary to the following text\
+            \ in Chinese and in markdown format, please output the url as the reference\
+            \ if have. \n<Text to be summarized>\n{{#1719840940932.output#}}\n<Summary>"
         selected: false
         title: LLM 4
         type: llm
@@ -492,21 +407,25 @@ workflow:
       height: 98
       id: '1719932888279'
       position:
-        x: 3392
-        y: 358
+        x: 3315
+        y: 388.5
       positionAbsolute:
-        x: 3392
-        y: 358
+        x: 3315
+        y: 388.5
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     - data:
-        code: "def main(arg2: str) -> dict:\n    import re\n    links = []\n    for\
-          \ text in arg2:\n        link_list = re.findall(r'\\(https?://[^\\s\\)]+\\\
-          )', text)\n        links.extend([link.strip('()') for link in link_list])\n\
-          \    return {\n        \"result\": links,\n    }\n"
+        code: "# def main(arg2: str) -> dict:\n#     import re\n#     links = []\n\
+          #     for text in arg2:\n#         link_list = re.findall(r'\\(https?://[^\\\
+          s\\)]+\\)', text)\n#         links.extend([link.strip('()') for link in\
+          \ link_list])\n#     return {\n#         \"result\": links,\n#     }\ndef\
+          \ main(arg2: str) -> dict:\n    import re\n    links = []\n    for text\
+          \ in arg2:\n        match = re.search(r'(https?://\\S+)', text)\n      \
+          \  if match:\n            links.append(match.group(1))\n    return {\n \
+          \       \"result\": links,\n    }\n"
         code_language: python3
         desc: ''
         outputs:
@@ -525,51 +444,15 @@ workflow:
       id: '1719933634159'
       position:
         x: 1379
-        y: 358
+        y: 388.5
       positionAbsolute:
         x: 1379
-        y: 358
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        isInIteration: true
-        iteration_id: '1719878483248'
-        provider_id: webscraper
-        provider_name: webscraper
-        provider_type: builtin
-        selected: false
-        title: Web Scraper
-        tool_configurations:
-          generate_summary: 1
-          user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
-            (KHTML, like Gecko) Chrome/100.0.1000.0 Safari/537.36
-        tool_label: Web Scraper
-        tool_name: webscraper
-        tool_parameters:
-          url:
-            type: mixed
-            value: '{{#1719878483248.item#}}'
-        type: tool
-      extent: parent
-      height: 116
-      id: '1719934883544'
-      parentId: '1719878483248'
-      position:
-        x: 751.2959459148569
-        y: 85.28571428571433
-      positionAbsolute:
-        x: 2434.295945914857
-        y: 443.28571428571433
+        y: 388.5
       selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
-      zIndex: 1002
     - data:
         authorization:
           config: null
@@ -602,7 +485,7 @@ workflow:
         y: 85
       positionAbsolute:
         x: 1800
-        y: 443
+        y: 473.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -633,7 +516,120 @@ workflow:
         y: 85
       positionAbsolute:
         x: 2104
-        y: 443
+        y: 473.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1719840515773'
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: "SearXNG \u641C\u7D22"
+        tool_configurations:
+          num_results: 1
+          result_type: link
+          search_type: Page
+        tool_label: "SearXNG \u641C\u7D22"
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1719840515773.item#}}'
+        type: tool
+      extent: parent
+      height: 142
+      id: '1720362263119'
+      parentId: '1719840515773'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 1059
+        y: 473.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719878483248'
+        provider_id: jina
+        provider_name: jina
+        provider_type: builtin
+        selected: false
+        title: JinaReader
+        tool_configurations:
+          gather_all_images_at_the_end: 0
+          gather_all_links_at_the_end: 0
+          image_caption: 0
+          no_cache: 0
+          proxy_server: null
+          summary: 1
+          target_selector: null
+          wait_for_selector: null
+        tool_label: JinaReader
+        tool_name: jina_reader
+        tool_parameters:
+          url:
+            type: mixed
+            value: '{{#1719878483248.item#}}'
+        type: tool
+      extent: parent
+      height: 272
+      id: '1720364034385'
+      parentId: '1719878483248'
+      position:
+        x: 703.5714285714284
+        y: 85
+      positionAbsolute:
+        x: 2386.5714285714284
+        y: 473.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719878483248'
+        selected: false
+        template: '{{ title }}
+
+          {{ text }}'
+        title: Template 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1720364034385'
+          - text
+          variable: text
+        - value_selector:
+          - '1719878483248'
+          - item
+          variable: title
+      extent: parent
+      height: 54
+      id: '1720570101918'
+      parentId: '1719878483248'
+      position:
+        x: 1007.5714285714284
+        y: 85
+      positionAbsolute:
+        x: 2690.5714285714284
+        y: 473.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -641,6 +637,6 @@ workflow:
       width: 244
       zIndex: 1002
     viewport:
-      x: -232.5999999999999
-      y: 296.45000000000005
+      x: 0
+      y: 0
       zoom: 0.7
