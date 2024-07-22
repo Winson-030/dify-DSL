@@ -4,6 +4,8 @@ app:
   icon_background: '#E4FBCC'
   mode: advanced-chat
   name: "\u641C\u7D22\u5927\u5E083"
+kind: app
+version: 0.1.0
 workflow:
   features:
     file_upload:
@@ -29,18 +31,6 @@ workflow:
       voice: ''
   graph:
     edges:
-    - data:
-        isInIteration: false
-        sourceType: start
-        targetType: llm
-      id: 1719593592357-source-1719759357501-target
-      selected: false
-      source: '1719593592357'
-      sourceHandle: source
-      target: '1719759357501'
-      targetHandle: target
-      type: custom
-      zIndex: 0
     - data:
         isInIteration: false
         sourceType: llm
@@ -71,17 +61,6 @@ workflow:
       source: '1719878483248'
       sourceHandle: source
       target: '1719840940932'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: template-transform
-        targetType: llm
-      id: 1719840940932-source-1719932888279-target
-      source: '1719840940932'
-      sourceHandle: source
-      target: '1719932888279'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -120,25 +99,36 @@ workflow:
       type: custom
       zIndex: 0
     - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1719840940932-source-1721137597637-target
+      source: '1719840940932'
+      sourceHandle: source
+      target: '1721137597637'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
         isInIteration: true
         iteration_id: '1719878483248'
         sourceType: if-else
         targetType: tool
-      id: 1719935026336-true-1720364034385-target
+      id: 1719935026336-true-1721139904888-target
       source: '1719935026336'
       sourceHandle: 'true'
-      target: '1720364034385'
+      target: '1721139904888'
       targetHandle: target
       type: custom
       zIndex: 1002
     - data:
         isInIteration: false
-        sourceType: llm
-        targetType: answer
-      id: 1719932888279-source-answer-target
-      source: '1719932888279'
+        sourceType: start
+        targetType: llm
+      id: 1719593592357-source-1719759357501-target
+      source: '1719593592357'
       sourceHandle: source
-      target: answer
+      target: '1719759357501'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -147,13 +137,35 @@ workflow:
         iteration_id: '1719878483248'
         sourceType: tool
         targetType: template-transform
-      id: 1720364034385-source-1720570101918-target
-      source: '1720364034385'
+      id: 1721139904888-source-1720570101918-target
+      source: '1721139904888'
       sourceHandle: source
       target: '1720570101918'
       targetHandle: target
       type: custom
       zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1721137597637-source-1721461915462-target
+      source: '1721137597637'
+      sourceHandle: source
+      target: '1721461915462'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1721461915462-source-answer-target
+      source: '1721461915462'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
     - data:
         desc: ''
@@ -165,42 +177,41 @@ workflow:
       id: '1719593592357'
       position:
         x: 30
-        y: 388.5
+        y: 443.5
       positionAbsolute:
         x: 30
-        y: 388.5
+        y: 443.5
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     - data:
-        answer: '{{#1719932888279.text#}}'
+        answer: '{{#1721461915462.text#}}'
         desc: ''
-        selected: false
-        title: Answer
+        selected: true
+        title: "9.\u8F93\u51FA"
         type: answer
         variables: []
       height: 107
       id: answer
       position:
-        x: 3619
-        y: 388.5
+        x: 2110.1428571428573
+        y: 583.5
       positionAbsolute:
-        x: 3619
-        y: 388.5
-      selected: false
+        x: 2110.1428571428573
+        y: 583.5
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     - data:
         context:
-          enabled: true
-          variable_selector:
-          - sys
-          - query
-        desc: ''
+          enabled: false
+          variable_selector: []
+        desc: "\u6839\u636E\u7528\u6237\u7684\u95EE\u9898\u751F\u6210\u4E09\u4E2A\u76F8\
+          \u5173\u7684\u95EE\u9898"
         model:
           completion_params:
             frequency_penalty: 0.5
@@ -223,25 +234,26 @@ workflow:
             \ original question."
         - id: 6ba785ec-0bba-4a19-8a6d-63dbeacce7d2
           role: user
-          text: "Here is the question: {{#sys.query#}}\n\nUnderstand the question\
-            \ first, then identify worthwhile topics that can be follow-ups, provide\
-            \ 3 questions, each question no longer than 20 words. \nDo NOT repeat\
-            \ the original question. the output language MUST same  as \u2018 {{#context#}}\
-            \ \u2018 and do NOT return any translation. "
+          text: "Here is the question: {{#sys.query#}}\n\n\ntranslate {{#sys.query#}}\
+            \ into english, just output the result, do not output any explaination.\n\
+            \nUnderstand the question first, then identify worthwhile topics that\
+            \ can be follow-ups, provide 3 questions, each question no longer than\
+            \ 20 words. \nDo NOT repeat the original question. the output language\
+            \ MUST same  as user query and do NOT return any translation. "
         selected: false
-        title: LLM 1
+        title: "1.\u89E3\u6790\u95EE\u9898"
         type: llm
         variables: []
         vision:
           enabled: false
-      height: 98
+      height: 128
       id: '1719759357501'
       position:
-        x: 334
-        y: 388.5
+        x: 30
+        y: 524.9285714285714
       positionAbsolute:
-        x: 334
-        y: 388.5
+        x: 30
+        y: 524.9285714285714
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -251,35 +263,39 @@ workflow:
         code: "\ndef main(arg1: str) -> dict:\n    questions = arg1.split('\\n')\n\
           \    return {\n        \"result\": questions,\n    }\n"
         code_language: python3
-        desc: ''
+        dependencies:
+        - name: ''
+          version: ''
+        desc: "\u5C06\u4E09\u4E2A\u95EE\u9898\u62C6\u5206\uFF0C\u7ED9searxng\u641C\
+          \u7D22"
         outputs:
           result:
             children: null
             type: array[string]
         selected: false
-        title: Code
+        title: "2.\u5207\u5206\u95EE\u9898"
         type: code
         variables:
         - value_selector:
           - '1719759357501'
           - text
           variable: arg1
-      height: 54
+      height: 84
       id: '1719838886987'
       position:
-        x: 638
-        y: 388.5
+        x: 319.4285714285713
+        y: 437.78571428571433
       positionAbsolute:
-        x: 638
-        y: 388.5
+        x: 319.4285714285713
+        y: 437.78571428571433
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     - data:
-        desc: ''
-        height: 247
+        desc: "\u6839\u636E\u95EE\u9898\u641C\u7D22\u5E76\u83B7\u5F97\u94FE\u63A5"
+        height: 253
         iterator_selector:
         - '1719838886987'
         - result
@@ -290,30 +306,28 @@ workflow:
         selected: false
         startNodeType: tool
         start_node_id: '1720362263119'
-        title: Iteration
+        title: "3.\u641C\u7D22\u95EE\u9898"
         type: iteration
-        width: 377
-      height: 247
+        width: 409
+      height: 253
       id: '1719840515773'
       position:
-        x: 942
-        y: 388.5
+        x: 319.4285714285713
+        y: 537.7857142857143
       positionAbsolute:
-        x: 942
-        y: 388.5
+        x: 319.4285714285713
+        y: 537.7857142857143
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 377
+      width: 409
       zIndex: 1
     - data:
         desc: ''
         selected: false
-        template: '{{ arg1 }}
-
-          '
-        title: Template
+        template: "{% for item in arg1 -%}\n    {{ item }}\n{%- endfor %}"
+        title: "6.\u6587\u7AE0\u6574\u5408\u6A21\u677F"
         type: template-transform
         variables:
         - value_selector:
@@ -323,19 +337,21 @@ workflow:
       height: 54
       id: '1719840940932'
       position:
-        x: 3011
-        y: 388.5
+        x: 1733.8571428571431
+        y: 512.0714285714286
       positionAbsolute:
-        x: 3011
-        y: 388.5
+        x: 1733.8571428571431
+        y: 512.0714285714286
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     - data:
-        desc: ''
-        height: 377
+        desc: "\u5148\u5224\u65AD\u7F51\u9875\u662F\u5426\u53EF\u4EE5\u8BBF\u95EE\uFF0C\
+          \u518D\u4F7F\u7528jina \u6252\u53D6\u4FE1\u606F\uFF0C\u6700\u540E\u901A\u8FC7\
+          \u6A21\u677F\u8F93\u51FA"
+        height: 451
         iterator_selector:
         - '1719933634159'
         - result
@@ -346,109 +362,52 @@ workflow:
         selected: false
         startNodeType: http-request
         start_node_id: '1719935024281'
-        title: Iteration 2
+        title: "5.\u83B7\u53D6\u7F51\u9875\u6570\u636E"
         type: iteration
-        width: 1267.5714285714284
-      height: 377
+        width: 953
+      height: 451
       id: '1719878483248'
       position:
-        x: 1683
-        y: 388.5
+        x: 756.4285714285716
+        y: 537.7857142857143
       positionAbsolute:
-        x: 1683
-        y: 388.5
+        x: 756.4285714285716
+        y: 537.7857142857143
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 1268
+      width: 953
       zIndex: 1
     - data:
-        context:
-          enabled: false
-          variable_selector: []
-        desc: ''
-        memory:
-          query_prompt_template: '{{#sys.query#}}{{#1719759357501.text#}}'
-          role_prefix:
-            assistant: ''
-            user: ''
-          window:
-            enabled: false
-            size: 50
-        model:
-          completion_params:
-            frequency_penalty: 0.5
-            presence_penalty: 0.5
-            temperature: 0.2
-            top_p: 0.75
-          mode: chat
-          name: gpt-3.5-turbo-16k
-          provider: openai
-        prompt_template:
-        - id: fd1a7c6d-67ae-4124-ad91-65fe8868c4ab
-          role: system
-          text: 'You are a large language AI assistant built by winson. Your answer
-            must be correct, accurate and written by an expert using an unbiased and
-            professional tone.
-
-            '
-        - id: 989185b9-19fb-486e-b430-b9c379b532b9
-          role: user
-          text: "<Task>\nDo a general overview style summary to the following text\
-            \ in Chinese and in markdown format, please output the url as the reference\
-            \ if have. \n<Text to be summarized>\n{{#1719840940932.output#}}\n<Summary>"
-        selected: false
-        title: LLM 4
-        type: llm
-        variables: []
-        vision:
-          enabled: false
-      height: 98
-      id: '1719932888279'
-      position:
-        x: 3315
-        y: 388.5
-      positionAbsolute:
-        x: 3315
-        y: 388.5
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        code: "# def main(arg2: str) -> dict:\n#     import re\n#     links = []\n\
-          #     for text in arg2:\n#         link_list = re.findall(r'\\(https?://[^\\\
-          s\\)]+\\)', text)\n#         links.extend([link.strip('()') for link in\
-          \ link_list])\n#     return {\n#         \"result\": links,\n#     }\ndef\
-          \ main(arg2: str) -> dict:\n    import re\n    links = []\n    for text\
-          \ in arg2:\n        match = re.search(r'(https?://\\S+)', text)\n      \
-          \  if match:\n            links.append(match.group(1))\n    return {\n \
-          \       \"result\": links,\n    }\n"
+        code: "def main(arg2: str) -> dict:\n    import re\n    links = []\n    for\
+          \ text in arg2:\n        match = re.search(r'(https?://\\S+)', text)\n \
+          \       if match:\n            links.append(match.group(1))\n    return\
+          \ {\n        \"result\": links,\n    }\n"
         code_language: python3
-        desc: ''
+        desc: "\u83B7\u53D6\u5E76\u62C6\u5206\u94FE\u63A5\uFF0C\u7528\u4E8E\u8FDB\u4E00\
+          \u6B65\u6252\u6570\u636E"
         outputs:
           result:
             children: null
             type: array[string]
         selected: false
-        title: Code 2
+        title: "4.\u62C6\u5206\u641C\u7D22\u94FE\u63A5"
         type: code
         variables:
         - value_selector:
           - '1719840515773'
           - output
           variable: arg2
-      height: 54
+      height: 84
       id: '1719933634159'
       position:
-        x: 1379
-        y: 388.5
+        x: 615.2857142857143
+        y: 443.5
       positionAbsolute:
-        x: 1379
-        y: 388.5
-      selected: true
+        x: 615.2857142857143
+        y: 443.5
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -484,8 +443,8 @@ workflow:
         x: 117
         y: 85
       positionAbsolute:
-        x: 1800
-        y: 473.5
+        x: 873.4285714285716
+        y: 622.7857142857143
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -493,6 +452,16 @@ workflow:
       width: 244
       zIndex: 1001
     - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: '1719935030678'
+            value: '200'
+            variable_selector:
+            - '1719935024281'
+            - status_code
+          logical_operator: and
         conditions:
         - comparison_operator: '='
           id: '1719935030678'
@@ -512,11 +481,11 @@ workflow:
       id: '1719935026336'
       parentId: '1719878483248'
       position:
-        x: 421
-        y: 85
+        x: 118.14285714285643
+        y: 200.71428571428578
       positionAbsolute:
-        x: 2104
-        y: 473.5
+        x: 874.571428571428
+        y: 738.5000000000001
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -552,14 +521,129 @@ workflow:
         x: 117
         y: 85
       positionAbsolute:
-        x: 1059
-        y: 473.5
+        x: 436.4285714285713
+        y: 622.7857142857143
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
       zIndex: 1001
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1719878483248'
+        selected: false
+        template: '{{ title }}
+
+          {{ text }}'
+        title: "\u7F51\u9875\u6587\u7AE0\u6A21\u677F"
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1721139904888'
+          - text
+          variable: text
+        - value_selector:
+          - '1719878483248'
+          - item
+          variable: title
+      extent: parent
+      height: 54
+      id: '1720570101918'
+      parentId: '1719878483248'
+      position:
+        x: 667.8282349816318
+        y: 90.0361348443887
+      positionAbsolute:
+        x: 1424.2568064102034
+        y: 627.821849130103
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}{{#1719759357501.text#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            frequency_penalty: 0.3
+            presence_penalty: 0.2
+            temperature: 0.5
+            top_p: 0.85
+          mode: chat
+          name: gpt-4o
+          provider: openai
+        prompt_template:
+        - id: 7eb22cdf-1a02-41bc-9475-8c2e01d6b729
+          role: system
+          text: "<Task>\n\u4F60\u5C06\u4F5C\u4E3A\u4E00\u4F4D\u6587\u7AE0\u603B\u7ED3\
+            \u4E13\u5BB6\uFF0C\u8D1F\u8D23\u9605\u8BFB\u5E76\u603B\u7ED3\u4ECE\u7F51\
+            \u9875\u63D0\u53D6\u7684\u6587\u7AE0\u5185\u5BB9\u3002\n<Background>\n\
+            \u7528\u6237\u4F1A\u63D0\u4F9B\u4ECE\u591A\u4E2A\u7F51\u9875\u63D0\u53D6\
+            \u7684\u6587\u7AE0\u5185\u5BB9\uFF0C\u5E0C\u671B\u751F\u6210\u4E00\u4EFD\
+            \u8BE6\u7EC6\u7684\u603B\u7ED3\u3002\u603B\u7ED3\u9700\u8981\u5305\u62EC\
+            \u6587\u7AE0\u7684\u5185\u5BB9\u6574\u7406\u3001\u7ED3\u8BBA\u548C\u91CD\
+            \u8981\u7684\u62A5\u9053\u7EC6\u8282\uFF0C\u5E76\u4E14\u7528Markdown\u683C\
+            \u5F0F\u8F93\u51FA\u3002"
+        - id: 9e5ab3e0-a364-4092-b585-02466393df03
+          role: user
+          text: "\n<Input>\n- \u6587\u7AE0\u5185\u5BB9\uFF1A{{#1719840940932.output#}}\n\
+            \n\n\n\n<Requirement>\n\u8BF7\u9605\u8BFB\u5E76\u7406\u89E3\u63D0\u4F9B\
+            \u7684\u6587\u7AE0\u5185\u5BB9\uFF0C\u5E76\u751F\u6210\u4E00\u4EFD\u8BE6\
+            \u7EC6\u7684\u603B\u7ED3\u3002\u603B\u7ED3\u5185\u5BB9\u5FC5\u987B\u5305\
+            \u62EC\u4EE5\u4E0B\u90E8\u5206\uFF1A\n0. **\u6807\u9898**\uFF1A\u7ED3\u5408\
+            \u2018{{#sys.query#}}\u2019\uFF0C\u4E3A\u603B\u7ED3\u5185\u5BB9\u6982\u62EC\
+            \u4E00\u4E2A\u6807\u9898\n\n\n\n1. **\u5F15\u8A00**\uFF1A\u7B80\u8981\u4ECB\
+            \u7ECD\u6587\u7AE0\u7684\u4E3B\u9898\u548C\u80CC\u666F\u3002\n2. **\u5185\
+            \u5BB9\u6574\u7406**\uFF1A\u7406\u89E3\u6587\u7AE0\u5185\u5BB9\uFF0C\u5206\
+            \u6BB5\u843D\u6574\u7406\u6587\u7AE0\u5185\u5BB9\u3002\n3. **\u7ED3\u8BBA\
+            **\uFF1A\u63D0\u70BC\u5E76\u603B\u7ED3\u6587\u7AE0\u7684\u4E3B\u8981\u7ED3\
+            \u8BBA\u3002\n4. **\u62A5\u9053\u7EC6\u8282**\uFF1A\u5305\u62EC\u4EFB\u4F55\
+            \u91CD\u8981\u7684\u7EC6\u8282\u3001\u6570\u636E\u6216\u5F15\u8A00\uFF0C\
+            \u8FD9\u4E9B\u53EF\u4EE5\u5E2E\u52A9\u66F4\u597D\u5730\u7406\u89E3\u6587\
+            \u7AE0\u7684\u5185\u5BB9\u3002\n5. **\u76F8\u5173\u94FE\u63A5**\uFF1A\u5206\
+            \u70B9\u5217\u51FA\u6587\u7AE0\u5185\u5BB9\u4E2D\u5305\u542B\u7684\u94FE\
+            \u63A5\n\n\n\u8BF7\u786E\u4FDD\u8F93\u51FA\u4F7F\u7528Markdown\u683C\u5F0F\
+            \uFF0C\u5E76\u6309\u7167\u4EE5\u4E0B\u7ED3\u6784\u7EC4\u7EC7\uFF1A\n\n\
+            # [\u6807\u9898]\n## \u5F15\u8A00\n[\u5F15\u8A00\u5185\u5BB9]\n## \u6574\
+            \u7406\n[\u5185\u5BB9\u6574\u7406]\n## \u7ED3\u8BBA\n[\u7ED3\u8BBA\u5185\
+            \u5BB9]\n## \u641C\u7D22\u7EC6\u8282\n- [\u7EC6\u82821]\n- [\u7EC6\u8282\
+            2]\n- [\u7EC6\u82823]\n## \u76F8\u5173\u94FE\u63A5\n[\u76F8\u5173\u94FE\
+            \u63A5\u6807\u9898](\u76F8\u5173\u94FE\u63A5)\n"
+        selected: false
+        title: "7.\u4F7F\u7528gpt\u603B\u7ED3"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1721137597637'
+      position:
+        x: 1733.8571428571431
+        y: 583.5
+      positionAbsolute:
+        x: 1733.8571428571431
+        y: 583.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
     - data:
         desc: ''
         isInIteration: true
@@ -571,7 +655,7 @@ workflow:
         title: JinaReader
         tool_configurations:
           gather_all_images_at_the_end: 0
-          gather_all_links_at_the_end: 0
+          gather_all_links_at_the_end: 1
           image_caption: 0
           no_cache: 0
           proxy_server: null
@@ -587,14 +671,14 @@ workflow:
         type: tool
       extent: parent
       height: 272
-      id: '1720364034385'
+      id: '1721139904888'
       parentId: '1719878483248'
       position:
-        x: 703.5714285714284
-        y: 85
+        x: 396.79525720774336
+        y: 90.71428571428567
       positionAbsolute:
-        x: 2386.5714285714284
-        y: 473.5
+        x: 1153.223828636315
+        y: 628.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -602,41 +686,47 @@ workflow:
       width: 244
       zIndex: 1002
     - data:
+        context:
+          enabled: false
+          variable_selector: []
         desc: ''
-        isInIteration: true
-        iteration_id: '1719878483248'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo-0125
+          provider: openai
+        prompt_template:
+        - id: f977fe24-6c1e-4e3a-9e96-0c123537a225
+          role: system
+          text: "\u4F60\u662F\u4E00\u4E2A\u7FFB\u8BD1\u4E13\u5BB6\uFF0C\u4F60\u64C5\
+            \u957F\u7FFB\u8BD1\u5404\u79CD\u8BED\u8A00\u3002"
+        - id: aaf75498-c79e-43fb-bf97-68da27e324ae
+          role: user
+          text: "\u5728\u4FDD\u7559\u539F\u6709\u6587\u7AE0\u683C\u5F0F\u7684\u524D\
+            \u63D0\u4E0B\uFF0C\u5C06\u6587\u7AE0\u5185\u5BB9\u7FFB\u8BD1\u6210\u7B80\
+            \u4F53\u4E2D\u6587\u3002\u7FFB\u8BD1\u52A1\u5FC5\u51C6\u786E\u3002\n\n\
+            \u6587\u7AE0\u5185\u5BB9\uFF1A{{#1721137597637.text#}}\n\n"
         selected: false
-        template: '{{ title }}
-
-          {{ text }}'
-        title: Template 2
-        type: template-transform
-        variables:
-        - value_selector:
-          - '1720364034385'
-          - text
-          variable: text
-        - value_selector:
-          - '1719878483248'
-          - item
-          variable: title
-      extent: parent
-      height: 54
-      id: '1720570101918'
-      parentId: '1719878483248'
+        title: "8.\u7FFB\u8BD1\u603B\u7ED3\u5185\u5BB9"
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1721461915462'
       position:
-        x: 1007.5714285714284
-        y: 85
+        x: 1733.8571428571431
+        y: 703.4999999999999
       positionAbsolute:
-        x: 2690.5714285714284
-        y: 473.5
+        x: 1733.8571428571431
+        y: 703.4999999999999
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
-      zIndex: 1002
     viewport:
-      x: 0
-      y: 0
+      x: -890.0000000000005
+      y: -40.00000000000003
       zoom: 0.7
