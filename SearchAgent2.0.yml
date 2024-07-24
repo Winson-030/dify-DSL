@@ -1,0 +1,736 @@
+app:
+  description: ''
+  icon: "\U0001F310"
+  icon_background: '#E4FBCC'
+  mode: advanced-chat
+  name: Search Agent 2.0
+kind: app
+version: 0.1.0
+workflow:
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: true
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1719754483806-source-answer-target
+      selected: false
+      source: '1719754483806'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1719759357501-source-1721834743903-target
+      selected: false
+      source: '1719759357501'
+      sourceHandle: source
+      target: '1721834743903'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1721834812032-source-1721835212158-target
+      selected: false
+      source: '1721834812032'
+      sourceHandle: source
+      target: '1721835212158'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1721835212158-source-1719754483806-target
+      selected: false
+      source: '1721835212158'
+      sourceHandle: source
+      target: '1719754483806'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1719593592357-source-1719759357501-target
+      selected: false
+      source: '1719593592357'
+      sourceHandle: source
+      target: '1719759357501'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1721834812032'
+        sourceType: llm
+        targetType: tool
+      id: 1721838978555-source-1721834852500-target
+      source: '1721838978555'
+      sourceHandle: source
+      target: '1721834852500'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1721834812032'
+        sourceType: tool
+        targetType: tool
+      id: 1721834852500-source-1721837777040-target
+      source: '1721834852500'
+      sourceHandle: source
+      target: '1721837777040'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1721834812032'
+        sourceType: tool
+        targetType: tool
+      id: 1721837777040-source-1721840451074-target
+      source: '1721837777040'
+      sourceHandle: source
+      target: '1721840451074'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1721834812032'
+        sourceType: tool
+        targetType: tool
+      id: 1721840451074-source-1721842323007-target
+      source: '1721840451074'
+      sourceHandle: source
+      target: '1721842323007'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1721834812032'
+        sourceType: tool
+        targetType: template-transform
+      id: 1721842323007-source-1721836912102-target
+      source: '1721842323007'
+      sourceHandle: source
+      target: '1721836912102'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1721834743903-source-1721834812032-target
+      source: '1721834743903'
+      sourceHandle: source
+      target: '1721834812032'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1719593592357'
+      position:
+        x: 30
+        y: 477
+      positionAbsolute:
+        x: 30
+        y: 477
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1719754483806.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 107
+      id: answer
+      position:
+        x: 2614
+        y: 477
+      positionAbsolute:
+        x: 2614
+        y: 477
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            frequency_penalty: 0.5
+            presence_penalty: 0.5
+            temperature: 0.2
+            top_p: 0.75
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 8f804263-f470-48a9-9d17-c013935a9137
+          role: system
+          text: "```xml\n<instruction>\n<task>\n\u4F60\u5C06\u4F5C\u4E3A\u4E00\u4F4D\
+            \u6587\u7AE0\u603B\u7ED3\u4E13\u5BB6\uFF0C\u8D1F\u8D23\u9605\u8BFB\u5E76\
+            \u603B\u7ED3\u4ECE\u7F51\u9875\u63D0\u53D6\u7684\u6587\u7AE0\u5185\u5BB9\
+            \u3002\n<Background>\n\u7528\u6237\u4F1A\u63D0\u4F9B\u4ECE\u591A\u4E2A\
+            \u7F51\u9875\u63D0\u53D6\u7684\u6587\u7AE0\u5185\u5BB9\uFF0C\u5E0C\u671B\
+            \u751F\u6210\u4E00\u4EFD\u8BE6\u7EC6\u7684\u603B\u7ED3\u3002\u603B\u7ED3\
+            \u9700\u8981\u5305\u62EC\u6587\u7AE0\u7684\u5185\u5BB9\u6574\u7406\u3001\
+            \u7ED3\u8BBA\u548C\u91CD\u8981\u7684\u62A5\u9053\u7EC6\u8282\uFF0C\u5E76\
+            \u4E14\u7528Markdown\u683C\u5F0F\u8F93\u51FA\u3002\n\n<instructions>\n\
+            1. \u9605\u8BFB\u7528\u6237\u63D0\u4F9B\u7684\u4ECE\u591A\u4E2A\u7F51\u9875\
+            \u63D0\u53D6\u7684\u6587\u7AE0\u5185\u5BB9\u3002\n2. \u4ED4\u7EC6\u6574\
+            \u7406\u6587\u7AE0\u7684\u5185\u5BB9\uFF0C\u5305\u62EC\u4E3B\u8981\u8BBA\
+            \u70B9\u3001\u652F\u6301\u8BBA\u70B9\u7684\u7EC6\u8282\u548C\u7ED3\u8BBA\
+            \u3002\n3. \u4F7F\u7528Markdown\u683C\u5F0F\u5C06\u603B\u7ED3\u8F93\u51FA\
+            \uFF0C\u786E\u4FDD\u5185\u5BB9\u6E05\u6670\u3001\u7B80\u6D01\u3002\n4.\
+            \ \u786E\u4FDD\u603B\u7ED3\u4E2D\u4E0D\u5305\u542B\u4EFB\u4F55XML\u6807\
+            \u8BB0\u3002\n</instructions>\n<examples>\n<example>\nInput:\n\u6587\u7AE0\
+            \u5185\u5BB9\uFF1A\u8FD9\u662F\u4E00\u7BC7\u5173\u4E8E\u4EBA\u5DE5\u667A\
+            \u80FD\u7684\u6587\u7AE0\u3002\u4EBA\u5DE5\u667A\u80FD\u5728\u5404\u4E2A\
+            \u9886\u57DF\u90FD\u6709\u5E7F\u6CDB\u7684\u5E94\u7528\uFF0C\u5982\u533B\
+            \u7597\u3001\u91D1\u878D\u548C\u4EA4\u901A\u7B49\u3002\u6587\u7AE0\u8BE6\
+            \u7EC6\u4ECB\u7ECD\u4E86\u4EBA\u5DE5\u667A\u80FD\u7684\u53D1\u5C55\u5386\
+            \u7A0B\u548C\u672A\u6765\u8D8B\u52BF\u3002\nOutput:\n\u603B\u7ED3\uFF1A\
+            \u6587\u7AE0\u4ECB\u7ECD\u4E86\u4EBA\u5DE5\u667A\u80FD\u5728\u533B\u7597\
+            \u3001\u91D1\u878D\u548C\u4EA4\u901A\u7B49\u9886\u57DF\u7684\u5E7F\u6CDB\
+            \u5E94\u7528\uFF0C\u4EE5\u53CA\u4EBA\u5DE5\u667A\u80FD\u7684\u53D1\u5C55\
+            \u5386\u7A0B\u548C\u672A\u6765\u8D8B\u52BF\u3002\n\n<example>\nInput:\n\
+            \u6587\u7AE0\u5185\u5BB9\uFF1A\u6700\u8FD1\u4E00\u9879\u7814\u7A76\u53D1\
+            \u73B0\uFF0C\u559D\u5496\u5561\u5BF9\u5065\u5EB7\u6709\u76CA\u3002\u7814\
+            \u7A76\u8868\u660E\uFF0C\u9002\u91CF\u996E\u7528\u5496\u5561\u53EF\u4EE5\
+            \u964D\u4F4E\u60A3\u5FC3\u810F\u75C5\u548C\u4E2D\u98CE\u7684\u98CE\u9669\
+            \u3002\nOutput:\n\u603B\u7ED3\uFF1A\u6700\u65B0\u7814\u7A76\u663E\u793A\
+            \uFF0C\u9002\u91CF\u996E\u7528\u5496\u5561\u6709\u52A9\u4E8E\u964D\u4F4E\
+            \u5FC3\u810F\u75C5\u548C\u4E2D\u98CE\u7684\u98CE\u9669\u3002\n\n<example>\n\
+            Input:\n\u6587\u7AE0\u5185\u5BB9\uFF1A\u4E00\u5BB6\u77E5\u540D\u516C\u53F8\
+            \u53D1\u5E03\u4E86\u6700\u65B0\u7684\u8D22\u62A5\uFF0C\u663E\u793A\u5176\
+            \u5229\u6DA6\u5927\u5E45\u589E\u957F\n</examples>\n</instruction>\n```"
+        - id: 0da845aa-9966-45c2-b8de-a8213adfc54e
+          role: user
+          text: "\n<Input>\n\u6587\u7AE0\u5185\u5BB9\uFF1A{{#1721835212158.output#}}\n\
+            \n<Requirement>\n\u8BF7\u9605\u8BFB\u5E76\u7406\u89E3\u63D0\u4F9B\u7684\
+            \u6587\u7AE0\u5185\u5BB9\uFF0C\u5E76\u751F\u6210\u4E00\u4EFD\u8BE6\u7EC6\
+            \u7684\u603B\u7ED3\u3002\u603B\u7ED3\u5185\u5BB9\u5FC5\u987B\u5305\u62EC\
+            \u4EE5\u4E0B\u90E8\u5206\uFF1A\n\n0. **\u6807\u9898**\uFF1A\u7ED3\u5408\
+            \u2018{{#sys.query#}}\u2019\uFF0C\u4E3A\u603B\u7ED3\u5185\u5BB9\u6982\u62EC\
+            \u4E00\u4E2A\u6807\u9898\n1. **\u5F15\u8A00**\uFF1A\u7B80\u8981\u4ECB\u7ECD\
+            \u6587\u7AE0\u7684\u4E3B\u9898\u548C\u80CC\u666F\u3002\n2. **\u5185\u5BB9\
+            \u6574\u7406**\uFF1A\u9605\u8BFB\u6587\u7AE0\u5185\u5BB9\uFF0C\u5206\u6BB5\
+            \u843D\u6574\u7406\u6587\u7AE0\u5185\u5BB9\u5E76\u63D0\u4F9B\u5206\u6790\
+            \uFF0C\u63D0\u4F9B\u6587\u7AE0\u7684\u5168\u9762\u6982\u8FF0\uFF0C\u6CA1\
+            \u6709\u5B57\u6570\u9650\u5236\uFF1B\u786E\u4FDD\u8BE6\u5C3D\u3002\n3.\
+            \ **\u7ED3\u8BBA**\uFF1A\u63D0\u70BC\u5E76\u603B\u7ED3\u6587\u7AE0\u7684\
+            \u4E3B\u8981\u7ED3\u8BBA\u3002\n4. **\u641C\u7D22\u7EC6\u8282**\uFF1A\u5305\
+            \u62EC\u4EFB\u4F55\u91CD\u8981\u7684\u7EC6\u8282\u3001\u6570\u636E\u6216\
+            \u5F15\u8A00\uFF0C\u8FD9\u4E9B\u53EF\u4EE5\u5E2E\u52A9\u66F4\u597D\u5730\
+            \u7406\u89E3\u6587\u7AE0\u7684\u5185\u5BB9\u3002\n5. **\u76F8\u5173\u94FE\
+            \u63A5**\uFF1A\u6574\u5408\u5E76\u5206\u70B9\u5217\u51FA\u6587\u7AE0\u5185\
+            \u5BB9\u4E2D\u7684\u7F51\u9875\u94FE\u63A5\uFF08\u5982\u6709\uFF09\uFF0C\
+            \u4E0D\u8981\u2019https://example.com\u2018\u7B49\u865A\u5047\u94FE\u63A5\
+            \n\n\n\u8BF7\u786E\u4FDD\u8F93\u51FA\u4F7F\u7528Markdown\u683C\u5F0F\uFF0C\
+            \u5E76\u6309\u7167\u4EE5\u4E0B\u7ED3\u6784\u7EC4\u7EC7\uFF1A\n\n\n# [\u6807\
+            \u9898]\n## \u5F15\u8A00\n[\u5F15\u8A00\u5185\u5BB9]\n## \u641C\u7D22\u6574\
+            \u7406\n[\u5185\u5BB9\u6574\u7406]\n## \u7ED3\u8BBA\n[\u7ED3\u8BBA\u5185\
+            \u5BB9]\n## \u641C\u7D22\u7EC6\u8282\n[\u641C\u7D22\u7EC6\u8282]\n## \u76F8\
+            \u5173\u94FE\u63A5\n[\u76F8\u5173\u94FE\u63A5\u6807\u9898](\u76F8\u5173\
+            \u94FE\u63A5)\n\n"
+        selected: false
+        title: "\u641C\u7D22\u603B\u7ED3"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1719754483806'
+      position:
+        x: 2310
+        y: 477
+      positionAbsolute:
+        x: 2310
+        y: 477
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            frequency_penalty: 0.5
+            presence_penalty: 0.5
+            temperature: 0.2
+            top_p: 0.75
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 455a5f0d-bbba-479a-b3c2-1eefa938894a
+          role: system
+          text: "```xml\n<instruction>\n<task_description>\nYou are a helpful assistant\
+            \ that helps the user to ask related questions, based on question and\
+            \ the related contexts. \n</task_description>\n\n<instructions>\n1. Read\
+            \ the input question provided by the user.\n2. Analyze the question and\
+            \ identify the related contexts or keywords.\n3. Generate new questions\
+            \ that are related to the input question and its contexts.\n4. Ensure\
+            \ that the generated questions are relevant and can provide further insights\
+            \ or information related to the original question.\n5. Do not include\
+            \ any XML tags in the output, only the generated questions.\n\n</instructions>\n\
+            \n<examples>\n<example>\nInput:\nQuestion: \"What are the benefits of\
+            \ exercise?\"\nContexts: Health, Fitness\n\nOutput:\n\"What are some recommended\
+            \ exercises for beginners?\"\n\"How often should one exercise to see results?\"\
+            \n</example>\n\n<example>\nInput:\nQuestion: \"How can I improve my time\
+            \ management skills?\"\nContexts: Productivity, Work\n\nOutput:\n\"What\
+            \ are some effective time management techniques?\"\n\"How can prioritizing\
+            \ tasks help in improving time management?\"\n</example>\n\n<example>\n\
+            Input:\nQuestion: \"What are the best ways to reduce stress?\"\nContexts:\
+            \ Wellness, Mental Health\n\nOutput:\n\"How does meditation help in reducing\
+            \ stress?\"\n\"What are some relaxation techniques to alleviate stress?\"\
+            \n</example>\n</examples>\n```"
+        - id: b49d53de-96ce-4d17-972c-260adb6b0084
+          role: user
+          text: "\u539F\u59CB\u95EE\u9898\uFF1A{{#sys.query#}}\n\n\u7406\u89E3\u95EE\
+            \u9898\u540E\uFF0C\u9000\u4E00\u6B65\u601D\u8003\u53BB\u6389\u65E0\u5173\
+            \u504F\u89C1\u548C\u8BEF\u5BFC\u4FE1\u606F\uFF0C\u4EC5\u5173\u6CE8\u95EE\
+            \u9898\u672C\u8EAB\u3002\u6839\u636E\u539F\u59CB\u95EE\u9898\u63D0\u51FA\
+            3\u4E2A\u76F8\u5173\u4E14\u82CF\u683C\u62C9\u5E95\u5F0F\u7684\u8FDB\u4E00\
+            \u6B65\u95EE\u9898\uFF0C\u6CE8\u610F\u95EE\u9898\u4E0D\u8981\u91CD\u590D\
+            \uFF0C\u6709\u4EF7\u503C\u7684\uFF0C\u53EF\u4EE5\u8DDF\u8FDB\uFF0C\u5E76\
+            \u5199\u51FA\u7684\u6BCF\u4E2A\u95EE\u9898\u4E0D\u8D85\u8FC7 20 \u4E2A\
+            \u5B57\u3002\u8FD9\u4E9B\u95EE\u9898\u9700\u8981\u8FDB\u884C\u641C\u7D22\
+            \u5F15\u64CE\u4F18\u5316\uFF0C\u4EE5\u4FBF\u53EF\u4EE5\u7528\u4E8Egoogle\u8FDB\
+            \u884C\u641C\u7D22\u3002\n\n\u8BF7\u786E\u4FDD\u540E\u7EED\u95EE\u9898\
+            \u4E2D\u5305\u542B\u5177\u4F53\u4FE1\u606F\uFF0C\u6BD4\u5982\u4E8B\u4EF6\
+            \u3001\u540D\u79F0\u3001\u5730\u70B9\uFF0C\u4EE5\u4FBF\u5B83\u4EEC\u53EF\
+            \u4EE5\u72EC\u7ACB\u63D0\u95EE\u3002\u4F8B\u5982\uFF0C\u5982\u679C\u539F\
+            \u95EE\u9898\u8BE2\u95EE\u201C\u66FC\u54C8\u987F\u8BA1\u5212\u201D\uFF0C\
+            \u5728\u540E\u7EED\u95EE\u9898\u4E2D\uFF0C\u4E0D\u8981\u4EC5\u4EC5\u8BF4\
+            \u201C\u8FD9\u4E2A\u8BA1\u5212\u201D\uFF0C\u800C\u8981\u4F7F\u7528\u5B8C\
+            \u6574\u540D\u79F0\u201C\u66FC\u54C8\u987F\u8BA1\u5212\u201D\u3002"
+        selected: false
+        title: "\u7406\u89E3\u95EE\u9898"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1719759357501'
+      position:
+        x: 334
+        y: 477
+      positionAbsolute:
+        x: 334
+        y: 477
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(arg1: str) -> dict:\n    questions = arg1.split('\\n')\n \
+          \   return {\n        \"result\": questions,\n    }"
+        code_language: python3
+        dependencies: []
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: "\u62C6\u5206\u95EE\u9898"
+        type: code
+        variables:
+        - value_selector:
+          - '1719759357501'
+          - text
+          variable: arg1
+      height: 54
+      id: '1721834743903'
+      position:
+        x: 638
+        y: 477
+      positionAbsolute:
+        x: 638
+        y: 477
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 554
+        iterator_selector:
+        - '1721834743903'
+        - result
+        output_selector:
+        - '1721836912102'
+        - output
+        output_type: array[string]
+        selected: false
+        startNodeType: llm
+        start_node_id: '1721838978555'
+        title: Iteration
+        type: iteration
+        width: 1004
+      height: 554
+      id: '1721834812032'
+      position:
+        x: 942
+        y: 477
+      positionAbsolute:
+        x: 942
+        y: 477
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1004
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        isIterationStart: false
+        iteration_id: '1721834812032'
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: Search link English
+        tool_configurations:
+          num_results: 2
+          result_type: link
+          search_type: Page
+        tool_label: SearXNG Search
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1721838978555.text#}}'
+        type: tool
+      extent: parent
+      height: 142
+      id: '1721834852500'
+      parentId: '1721834812032'
+      position:
+        x: 114.17246690903903
+        y: 196.1207817694443
+      positionAbsolute:
+        x: 1056.172466909039
+        y: 673.1207817694443
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        desc: ''
+        selected: false
+        template: "{% for item in arg1 -%}\n    {{ item }}\n{%- endfor %}"
+        title: "\u6574\u5408\u6A21\u677F"
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1721834812032'
+          - output
+          variable: arg1
+      height: 54
+      id: '1721835212158'
+      position:
+        x: 2006
+        y: 477
+      positionAbsolute:
+        x: 2006
+        y: 477
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1721834812032'
+        selected: false
+        template: "\u9898\u76EE\uFF1A{{ title }}\n\u82F1\u6587\u94FE\u63A5\uFF1A{{\
+          \ enlink }}\n\u4E2D\u5348\u94FE\u63A5\uFF1A{{ cnlink }}\n\u82F1\u6587\u5185\
+          \u5BB9\uFF1A{{ entext }}\n\u4E2D\u6587\u5185\u5BB9\uFF1A{{ cntext }}"
+        title: "\u6587\u7AE0\u6A21\u677F"
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1721834812032'
+          - item
+          variable: title
+        - value_selector:
+          - '1721837777040'
+          - text
+          variable: entext
+        - value_selector:
+          - '1721834852500'
+          - text
+          variable: enlink
+        - value_selector:
+          - '1721840451074'
+          - text
+          variable: cnlink
+        - value_selector:
+          - '1721842323007'
+          - text
+          variable: cntext
+      extent: parent
+      height: 54
+      id: '1721836912102'
+      parentId: '1721834812032'
+      position:
+        x: 697.606408037485
+        y: 240.17811635301746
+      positionAbsolute:
+        x: 1639.606408037485
+        y: 717.1781163530175
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1721834812032'
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: Search text English
+        tool_configurations:
+          num_results: 2
+          result_type: text
+          search_type: Page
+        tool_label: SearXNG Search
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1721838978555.text#}}'
+        type: tool
+      extent: parent
+      height: 142
+      id: '1721837777040'
+      parentId: '1721834812032'
+      position:
+        x: 119.32970414836241
+        y: 354.6646363391176
+      positionAbsolute:
+        x: 1061.3297041483625
+        y: 831.6646363391176
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1721834812032'
+        model:
+          completion_params:
+            frequency_penalty: 0.5
+            presence_penalty: 0.5
+            temperature: 0.2
+            top_p: 0.75
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: de1e90e2-6f3c-4fca-8522-67c581e7fe54
+          role: system
+          text: "```xml\n<instruction>\n  <task_description>\n    a translation expert,\
+            \ and you are skilled in translating various languages.\n  </task_description>\n\
+            \n  <instructions>\n    1. Identify the source language of the text that\
+            \ needs to be translated.\n    2. Determine the target language that the\
+            \ text should be translated into.\n    3. Use your expertise in translation\
+            \ to accurately convert the text from the source language to the target\
+            \ language.\n    4. Ensure that the translated text is grammatically correct\
+            \ and maintains the original meaning.\n    5. Do not include any XML tags\
+            \ in the output text.\n  </instructions>\n\n  <examples>\n    <example>\n\
+            \      <input>\n        Source Language: English\n        Target Language:\
+            \ Spanish\n        Text to Translate: \"Hello, how are you?\"\n      </input>\n\
+            \      <output>\n        \"Hola, \xBFc\xF3mo est\xE1s?\"\n      </output>\n\
+            \    </example>\n    <example>\n      <input>\n        Source Language:\
+            \ French\n        Target Language: German\n        Text to Translate:\
+            \ \"Je t'aime\"\n      </input>\n      <output>\n        \"Ich liebe dich\"\
+            \n      </output>\n    </example>\n    <example>\n      <input>\n    \
+            \    Source Language: Chinese\n        Target Language: Arabic\n     \
+            \   Text to Translate: \"\u4F60\u597D\uFF0C\u6211\u5F88\u597D\"\n    \
+            \  </input>\n      <output>\n        \"\u0645\u0631\u062D\u0628\u0627\u060C\
+            \ \u0623\u0646\u0627 \u0628\u062E\u064A\u0631\"\n      </output>\n   \
+            \ </example>\n  </examples>\n</instruction>\n```"
+        - id: af763ea9-4aaa-42a4-854e-5e7e7342cbf0
+          role: user
+          text: "Target Language: English\n Text to Translate: {{#1721834812032.item#}}"
+        selected: false
+        title: "\u7FFB\u8BD1\u95EE\u9898"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      extent: parent
+      height: 98
+      id: '1721838978555'
+      parentId: '1721834812032'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 1059
+        y: 562
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1721834812032'
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: Search link cn
+        tool_configurations:
+          num_results: 2
+          result_type: link
+          search_type: Page
+        tool_label: SearXNG Search
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1721834812032.item#}}'
+        type: tool
+      extent: parent
+      height: 142
+      id: '1721840451074'
+      parentId: '1721834812032'
+      position:
+        x: 382.98662404455865
+        y: 187.87689385418923
+      positionAbsolute:
+        x: 1324.9866240445585
+        y: 664.8768938541892
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1721834812032'
+        provider_id: searxng
+        provider_name: searxng
+        provider_type: builtin
+        selected: false
+        title: Search text cn
+        tool_configurations:
+          num_results: 2
+          result_type: text
+          search_type: Page
+        tool_label: SearXNG Search
+        tool_name: searxng_search
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1721834812032.item#}}'
+        type: tool
+      extent: parent
+      height: 142
+      id: '1721842323007'
+      parentId: '1721834812032'
+      position:
+        x: 394.75424197817756
+        y: 356.75490359104265
+      positionAbsolute:
+        x: 1336.7542419781776
+        y: 833.7549035910426
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    viewport:
+      x: 93.91260846611635
+      y: 188.43956096172326
+      zoom: 0.4525173214670627
